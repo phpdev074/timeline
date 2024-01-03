@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { createBrowserRouter, RouterProvider, Routes, Route, Navigate } from "react-router-dom";
+import LoginComponent from "./components/LoginComponent";
+import Dashboard from "./components/DashboardComponent";
+const isAuthenticated = () => {
+  return localStorage.getItem('jwtToken') !== null;
+};
 
 function App() {
+  const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <LoginComponent />,
+    },
+    {
+      path:"/dashboard",
+      element: <Dashboard />
+    }
+  ]);
+
+  useEffect(() => {
+    // Check authentication and redirect to the appropriate route
+    if (!isAuthenticated()) {
+      appRouter.navigate("/");
+    }
+  }, [appRouter]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RouterProvider router={appRouter}>
+        <Routes>
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </RouterProvider>
     </div>
   );
 }
