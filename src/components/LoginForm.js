@@ -22,7 +22,7 @@ const LoginForm = ({ formType, onToggle }) => {
 
   const onSubmit = async (values) => {
     try {
-      let url = 'http://localhost:5005/api/login';
+      let url = 'http://localhost:5005/api/admin/login';
       const response = await axios.post(url, values);
       if (response.status === 200) {
         const token = response?.data?.token;
@@ -50,10 +50,12 @@ const LoginForm = ({ formType, onToggle }) => {
       }
     }
   };
-
+  const textStyle = {
+    fontFamily: "'Playfair Display', serif",
+  };
   return (
     <>
-      <h1>{WEBSITE_NAME}</h1>
+      <h1 style={textStyle}>{WEBSITE_NAME}</h1>
       <Formik
         initialValues={ loginInitialValues}
         validationSchema={formType === 'login'&& loginValidationSchema}
