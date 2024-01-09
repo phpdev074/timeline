@@ -22,7 +22,7 @@ const LoginForm = ({ formType, onToggle }) => {
 
   const onSubmit = async (values) => {
     try {
-      let url = 'https://timeline-backend-tau.vercel.app/api/admin/login';
+      let url = 'https://timeline-dmivwvpk6-prakhars-projects-22eb7007.vercel.app/api/admin/login';
       const response = await axios.post(url, values);
       if (response.status === 200) {
         const token = response?.data?.token;
