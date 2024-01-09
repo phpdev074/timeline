@@ -16,7 +16,7 @@ const SidebarComponent = ({ isSidebarVisible }) => {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     width: isSidebarVisible ? '200px' : '0',
     transition: 'width 0.3s ease',
-    height:"737px",
+    height:"100vh",
     position:"fixed"
   };
 

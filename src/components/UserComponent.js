@@ -20,7 +20,7 @@ const UserComponent = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:5005/api/user-data?page=${page}`,
+        `http://localhost:5005/api/user-data?page=${page}`||`https://timeline-backend-tau.vercel.app/api/user-data?page=${page}`,
         {
           headers,
         }
@@ -49,7 +49,7 @@ const UserComponent = () => {
       };
 
       await axios.put(
-        `http://localhost:5005/api/update-status/${userId}`,
+        `http://localhost:5005/api/update-status/${userId}`||`https://timeline-backend-tau.vercel.app/api/update-status/${userId}`,
         { status: newStatus },
         { headers }
       );
@@ -80,21 +80,17 @@ const UserComponent = () => {
 
   const sortedUserInfo = () => {
     let sortedUsers = [...userInfo];
-
     if (sortOption === "active") {
       sortedUsers = sortedUsers.filter((user) => user.status === "active");
     } else if (sortOption === "inactive") {
       sortedUsers = sortedUsers.filter((user) => user.status === "inactive");
     }
-
     return sortedUsers;
   };
-
   const filteredUserInfo = sortedUserInfo().filter((user) => {
     const regex = new RegExp(searchQuery, "i");
     return regex.test(user.name);
   });
-
   return (
     <>
       <div className="user-component">
