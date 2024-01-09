@@ -9,14 +9,15 @@ const SidebarComponent = ({ isSidebarVisible }) => {
 
   const sidebarStyle = {
     position: 'relative',
-    backgroundColor: '#002DCA',
+    backgroundColor: '#170d36',
     color: 'white',
     overflow: 'hidden',
     borderRight: '2px solid #fff',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     width: isSidebarVisible ? '200px' : '0',
     transition: 'width 0.3s ease',
-    height:"737px"
+    height:"737px",
+    position:"fixed"
   };
 
   const logoStyle = {
@@ -79,16 +80,16 @@ const SidebarComponent = ({ isSidebarVisible }) => {
           <span style={textStyle}>{WEBSITE_NAME}</span>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
-          <Link to="/home" style={textStyle}>Home</Link>
+          <Link to="/dashboard" style={textStyle}>Home</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
-          <Link to="/user-data" style={textStyle}>Users</Link>
+          <Link to="/dashboard/user-data" style={textStyle}>Users</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
-          <Link to="/contact" style={textStyle}>Contact Us</Link>
+          <Link to="/dashboard/contact-us" style={textStyle}>Contact Us</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
-          <Link to="/payment-history" style={textStyle}>Payment History</Link>
+          <Link to="/dashboard/payment-history" style={textStyle}>Payment History</Link>
         </Nav.Item>
       </Nav>
       <Nav>

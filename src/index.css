@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  /* Remove default body margin */
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  height: 20vh;
+  background-color: #333;
+  /* Adjust background color as needed */
+  color: #fff;
+  /* Adjust text color as needed */
+  /* Add other header styles */
+}
+
+.dashboard-content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 30vw;
+  background-color: #eee;
+  /* Adjust background color as needed */
+  /* Add other sidebar styles */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  /* Add padding to the main content area */
+  /* Add other main content styles */
+}
+
+.footer {
+  height: 20vh;
+  background-color: #333;
+  /* Adjust background color as needed */
+  color: #fff;
+  /* Adjust text color as needed */
+  /* Add other footer styles */
+}
+
+
+.user-component h1 {
+  margin-left: "20px";
+  font-family: "'Playfair Display', serif";
+}
+
+
+.custom-table {
+  margin: auto;
+  width: 90% !important;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  margin-top: "15%";
+}
+.search-component{
+  margin: auto;
+  width: 90% !important;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+.sort-component{
+  margin: auto;
+  margin-bottom: 1%;
+  width: 90% !important;
+}
+.sort-component button{
+  margin-left:0.5%;
+}
+.pagination{
+  float: right;
+  margin-right:4.5%;
+  margin-top:1.5% ;
+
+}
+.pagination .heading{
+  margin:auto;
+  padding:auto;
+}
+.custom-table th,
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-table th {
+  font-family: "'Playfair Display', serif";
+}
+
+.custom-table tr:hover {
+  background-color: #ffff99;
+}
+.custom-form-width {
+  width: 300%;
+  max-width: 400px; 
+}

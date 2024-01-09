@@ -7,12 +7,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderComponent = ({ onToggleSidebar }) => {
   const headerStyle = {
-    backgroundColor: "#002DCA",
+    backgroundColor: "#170d36",
     color: "white",
     width: "100%",
     position: "fixed",
     top: 0,
-    // Add z-index to make sure the header is on top
   };
 
   const buttonStyle = {

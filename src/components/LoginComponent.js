@@ -6,7 +6,7 @@ import { COMPANY_LOGO } from '../utils/constants';
 const LoginComponent = () => {
   const containerStyle = {
     boxSizing: 'border-box',
-    backgroundColor: 'rgb(0, 45, 202)',
+    backgroundColor: '#170d36',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     height: '100vh',
