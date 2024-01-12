@@ -20,11 +20,12 @@ const UserComponent = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:5005/api/user-data?page=${page}`||`https://timeline-backend-tau.vercel.app/api/user-data?page=${page}`,
-        {
+          `https://3.7.8.148:5005/api/user-data?page=${page}`,
+          {
           headers,
         }
       );
+      console.log(response?.data)
       setUserInfo(response?.data?.data);
       setTotalPages(response?.data?.totalPages || 1);
     } catch (error) {
@@ -49,7 +50,7 @@ const UserComponent = () => {
       };
 
       await axios.put(
-        `http://localhost:5005/api/update-status/${userId}`||`https://timeline-backend-tau.vercel.app/api/update-status/${userId}`,
+        `https://3.7.8.148:5005/api/update-status/${userId}`,
         { status: newStatus },
         { headers }
       );

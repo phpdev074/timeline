@@ -29,7 +29,7 @@ const MainComponent = () => {
           Authorization: jwtToken,
         };
         const response = await axios.get(
-          "http://localhost:5005/api/user-data"||'https://timeline-backend-tau.vercel.app/user-data',
+          "https://3.7.8.148:5005/api/user-data",
           { headers }
         );
         setUserInfo(response?.data);
