@@ -89,9 +89,6 @@ const SidebarComponent = ({ isSidebarVisible }) => {
           <Link to="/dashboard/contact-us" style={textStyle}>Contact Us</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
-          <Link to="/dashboard/user-data" style={textStyle}>Push Notification🔔</Link>
-        </Nav.Item>
-        <Nav.Item style={navItemStyles}>
           <Link to="/dashboard/payment-history" style={textStyle}>Payment History</Link>
         </Nav.Item>
       </Nav>
