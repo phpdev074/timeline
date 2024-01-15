@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      let url = 'https://3.7.8.148:5005/api/admin/login';
+      let url = 'http://ludhianahosierycentre.co.in:5005/api/admin/login';
       const response = await axios.post(url, values);
 
       if (response.status === 200) {

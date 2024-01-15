@@ -29,7 +29,7 @@ const MainComponent = () => {
           Authorization: jwtToken,
         };
         const response = await axios.get(
-          "https://3.7.8.148:5005/api/user-data",
+          "http://ludhianahosierycentre.co.in:5005/api/user-data",
           { headers }
         );
         setUserInfo(response?.data);

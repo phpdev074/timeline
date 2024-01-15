@@ -20,7 +20,7 @@ const UserComponent = () => {
       };
 
       const response = await axios.get(
-          `https://3.7.8.148:5005/api/user-data?page=${page}`,
+          `http://ludhianahosierycentre.co.in:5005/api/user-data?page=${page}`,
           {
           headers,
         }
@@ -50,7 +50,7 @@ const UserComponent = () => {
       };
 
       await axios.put(
-        `https://3.7.8.148:5005/api/update-status/${userId}`,
+        `http://ludhianahosierycentre.co.in:5005/api/update-status/${userId}`,
         { status: newStatus },
         { headers }
       );
