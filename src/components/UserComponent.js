@@ -11,25 +11,24 @@ const UserComponent = () => {
   const [sortOption, setSortOption] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const getUserData = async (page) => {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
-      const headers = {
-        Authorization: jwtToken,
-      };
+      const headers = { Authorization: jwtToken };
 
       const response = await axios.get(
-          `http://ludhianahosierycentre.co.in:5005/api/user-data?page=${page}`,
-          {
-          headers,
-        }
+        `http://ludhianahosierycentre.co.in:5005/api/user-data?page=${page}`,
+        { headers }
       );
-      console.log(response?.data)
+
       setUserInfo(response?.data?.data);
       setTotalPages(response?.data?.totalPages || 1);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching user data:", error);
+      setLoading(false);
     }
   };
 
@@ -45,9 +44,7 @@ const UserComponent = () => {
   const handleStatusChange = async (userId, newStatus) => {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
-      const headers = {
-        Authorization: jwtToken,
-      };
+      const headers = { Authorization: jwtToken };
 
       await axios.put(
         `http://ludhianahosierycentre.co.in:5005/api/update-status/${userId}`,
@@ -57,7 +54,7 @@ const UserComponent = () => {
 
       getUserData(currentPage);
     } catch (error) {
-      console.log(error);
+      console.error("Error updating status:", error);
     }
   };
 
@@ -75,7 +72,7 @@ const UserComponent = () => {
     setSearchQuery(event.target.value);
   };
 
-  const handleSortChange = (option) => {
+  const handleSort = (option) => {
     setSortOption(option);
   };
 
@@ -88,14 +85,16 @@ const UserComponent = () => {
     }
     return sortedUsers;
   };
+
   const filteredUserInfo = sortedUserInfo().filter((user) => {
     const regex = new RegExp(searchQuery, "i");
     return regex.test(user.name);
   });
+
   return (
     <>
       <div className="user-component">
-        <h1 style={{ paddingLeft: "5%" }}>User Details</h1>
+        <h1>User Details</h1>
       </div>
       <div className="search-component">
         <FormControl
@@ -103,88 +102,113 @@ const UserComponent = () => {
           placeholder="Search by Name"
           onChange={handleSearchChange}
           value={searchQuery}
-          style={{ marginBottom: "2%" }}
         />
       </div>
       <div className="sort-component">
-        <label>Sort by user status:  </label>
+        <label>Sort by user status: </label>
         <Button
           variant={sortOption === null ? "primary" : "outline-primary"}
-          onClick={() => handleSortChange(null)}
+          onClick={() => handleSort(null)}
           style={{ marginRight: "5px" }}
         >
           All
         </Button>
         <Button
           variant={sortOption === "active" ? "success" : "outline-success"}
-          onClick={() => handleSortChange("active")}
+          onClick={() => handleSort("active")}
           style={{ marginRight: "5px" }}
         >
           Active
         </Button>
         <Button
           variant={sortOption === "inactive" ? "danger" : "outline-danger"}
-          onClick={() => handleSortChange("inactive")}
+          onClick={() => handleSort("inactive")}
         >
           Inactive
         </Button>
       </div>
       <div>
-        <table className="custom-table">
-          <thead>
-            <tr>
-              <th>Serial No.</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Status</th>
-              <th>Action</th>
-              <th>View Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredUserInfo.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.phoneNumber}</td>
-                <td>
-                  {user.status === "active" ? (
-                    <Button variant="success">Activate</Button>
-                  ) : (
-                    <Button variant="danger">In-activate</Button>
-                  )}
-                </td>
-                <td>
-                  <Dropdown>
-                    <Dropdown.Toggle variant="light" id="dropdown-basic">
-                      {user.status === "active" ? "Active" : "Inactive"}
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item
-                        onClick={() => handleStatusChange(user._id, "active")}
-                      >
-                        Activate
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => handleStatusChange(user._id, "inactive")}
-                      >
-                        Inactivate
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </td>
-                <td>
-                  <Button variant="success" onClick={() => openModal(user)}>
-                    View Details
-                  </Button>
-                </td>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <table className="custom-table">
+            <thead>
+              <tr>
+                <th>Serial No.</th>
+                <th>User Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>View Details</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredUserInfo.map((user, index) => (
+                <tr key={user._id} >
+                  <td>{index + 1}</td>
+                  <td>
+                    <img
+                      src={user.image}
+                      alt="User"
+                      style={{
+                        width:"100%",
+                        maxWidth:"35px",
+                        borderRadius: "100%",
+                        display: "block",
+                        overflow:"hidden",
+                        objectFit:"cover",
+                      }}
+                    />
+                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phoneNumber}</td>
+                  <td>
+                    {user.status === "active" ? (
+                      <Button variant="success">Activate</Button>
+                    ) : (
+                      <Button variant="danger">In-activate</Button>
+                    )}
+                  </td>
+                  <td>
+                    <Dropdown>
+                      <Dropdown.Toggle variant="light" id="dropdown-basic">
+                        {user.status === "active" ? "Active" : "Inactive"}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() =>
+                            handleStatusChange(user._id, "active")
+                          }
+                        >
+                          Activate
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() =>
+                            handleStatusChange(user._id, "inactive")
+                          }
+                        >
+                          Inactivate
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </td>
+                  <td>
+                    <Button
+                      variant="success"
+                      onClick={() => openModal(user)}
+                    >
+                      View Details
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
       <div className="pagination">
         <Button

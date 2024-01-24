@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const MainComponent = () => {
   const [userInfo, setUserInfo] = useState();
   const [fontSize, setFontSize] = useState(16);
+  const [journeyDetails, setJourneyDetails] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,17 +29,19 @@ const MainComponent = () => {
         const headers = {
           Authorization: jwtToken,
         };
-        const response = await axios.get(
-          "http://ludhianahosierycentre.co.in:5005/api/user-data",
-          { headers }
-        );
+
+        const [response, journeyDetailsResponse] = await Promise.all([
+          axios.get("http://ludhianahosierycentre.co.in:5005/api/user-data", { headers }),
+          axios.get("http://ludhianahosierycentre.co.in:5005/api/journey/get-all-user-journey-details", { headers })
+        ]);
         setUserInfo(response?.data);
+        setJourneyDetails(journeyDetailsResponse?.data); 
       } catch (error) {
         console.log(error);
       }
     };
     getUserData();
-  }, []);
+   }, []);
   const containerStyle={
     marginTop:"5%"
   }
@@ -64,7 +67,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white' ,  borderRadius:"20px",  fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
                 <h2>Total Active User</h2>
-                <p> 2</p>
+                <p> 0</p>
               </Card.Body>
             </Card>
           </Col>
@@ -73,7 +76,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white' ,  borderRadius:"20px",  fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
                 <h2>Total Journey</h2>
-                <p> 3</p>
+                <p> {journeyDetails?.data?.totalCount}</p>
               </Card.Body>
             </Card>
           </Col>
@@ -83,7 +86,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white', borderRadius:"20px",   fontFamily: "'Playfair Display', serif" }}>
               <Card.Body>
                 <h2>Total Journey Per Week</h2>
-                <p> 1</p>
+                <p> 0</p>
               </Card.Body>
             </Card>
           </Col>
@@ -92,7 +95,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white', borderRadius:"20px",   fontFamily: "'Playfair Display', serif" }}>
               <Card.Body>
                 <h2>Total Journey Per Month</h2>
-                <p> 2</p>
+                <p> 0</p>
               </Card.Body>
             </Card>
           </Col>
@@ -101,7 +104,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white',   borderRadius:"20px", fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
                 <h2>Total Journery per month</h2>
-                <p> 3</p>
+                <p> 0</p>
               </Card.Body>
             </Card>
           </Col>

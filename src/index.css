@@ -71,6 +71,7 @@ body {
 .sort-component{
   margin: auto;
   margin-bottom: 1%;
+  margin-top: 1%;
   width: 90% !important;
 }
 .sort-component button{
