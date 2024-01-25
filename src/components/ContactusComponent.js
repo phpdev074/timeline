@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { Button } from 'react-bootstrap';
 const ContactListComponent = () => {
   const [contactList, setContactList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchContactList = async () => {
       try {
-        const jwtToken = localStorage.getItem("jwtToken");
+        const jwtToken = localStorage.getItem('jwtToken');
         const headers = { Authorization: jwtToken };
-        // Fetch contact list details from the API endpoint
-        const response = await axios.get('http://ludhianahosierycentre.co.in:5005/api/contact/get-contactUs-details',{ headers });
+        const response = await axios.get('http://ludhianahosierycentre.co.in:5005/api/contact/get-contactUs-details', { headers });
+        console.log(response?.data?.data);
         setContactList(response?.data?.data);
         setLoading(false);
       } catch (error) {
@@ -23,6 +25,12 @@ const ContactListComponent = () => {
     fetchContactList();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = contactList.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <div className="contact-list-component">
@@ -32,30 +40,41 @@ const ContactListComponent = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>Serial No.</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>User Phone Number</th>
-                <th>Title</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contactList.map((contact, index) => (
-                <tr key={contact._id}>
-                  <td>{index + 1}</td>
-                  <td>{contact?.userId?.name}</td>
-                  <td>{contact?.userId?.email}</td>
-                  <td>{contact?.userId?.phoneNumber}</td>
-                  <td>{contact.title}</td>
-                  <td>{contact.description}</td>
+          <>
+            <table className="custom-table">
+              <thead>
+                <tr>
+                  <th>Serial No.</th>
+                  <th>User Name</th>
+                  <th>User Email</th>
+                  <th>User Phone Number</th>
+                  <th>Title</th>
+                  <th>Description</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentItems.map((contact, index) => (
+                  <tr key={contact._id}>
+                    <td>{index + 1}</td>
+                    <td>{contact?.userId?.name}</td>
+                    <td>{contact?.userId?.email}</td>
+                    <td>{contact?.userId?.phoneNumber}</td>
+                    <td>{contact.title}</td>
+                    <td>{contact.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="pagination">
+              <Button onClick={() => paginate(currentPage - 1)} variant="dark" disabled={currentPage === 1}>
+                Previous
+              </Button>
+              <span>{currentPage}</span>
+              <Button onClick={() => paginate(currentPage + 1)}  variant="dark" disabled={currentPage === Math.ceil(contactList.length / itemsPerPage)}>
+                Next
+              </Button>
+            </div>
+          </>
         )}
       </div>
     </>
