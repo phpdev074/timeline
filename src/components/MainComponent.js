@@ -32,7 +32,7 @@ const MainComponent = () => {
 
         const [response, journeyDetailsResponse] = await Promise.all([
           axios.get("http://ludhianahosierycentre.co.in:5005/api/user-data", { headers }),
-          axios.get("http://localhost:5005/api/journey/get-all-user-journey-details", { headers })
+          axios.get("http://ludhianahosierycentre.co.in:5005/api/journey/get-all-user-journey-details", { headers })
         ]);
         setUserInfo(response?.data);
         setJourneyDetails(journeyDetailsResponse?.data); 
