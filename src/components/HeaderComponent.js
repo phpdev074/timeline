@@ -21,13 +21,7 @@ const HeaderComponent = ({ onToggleSidebar }) => {
 
   return (
     <Navbar style={headerStyle} expand="lg">
-      <Button
-        variant="outline-light"
-        onClick={onToggleSidebar}
-        style={buttonStyle}
-      >
-        <FontAwesomeIcon icon={faBars} style={{ color: "white" }} />
-      </Button>
+     
       <Navbar.Brand>
         <span style={{ color: "white", margin: "10px" }}>Dashboard</span>
       </Navbar.Brand>

@@ -85,6 +85,9 @@ const SidebarComponent = ({ isSidebarVisible }) => {
         <Nav.Item style={navItemStyles}>
           <Link to="/dashboard/user-data" style={textStyle}>Users</Link>
         </Nav.Item>
+        <Nav.Item  style={navItemStyles}>
+          <Link to="/dashboard/report-list" style={textStyle}>Reports</Link>
+        </Nav.Item>
         <Nav.Item style={navItemStyles}>
           <Link to="/dashboard/contact-us" style={textStyle}>Contact Us</Link>
         </Nav.Item>

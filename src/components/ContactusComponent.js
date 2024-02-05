@@ -13,7 +13,6 @@ const ContactListComponent = () => {
         const jwtToken = localStorage.getItem('jwtToken');
         const headers = { Authorization: jwtToken };
         const response = await axios.get('http://ludhianahosierycentre.co.in:5005/api/contact/get-contactUs-details', { headers });
-        console.log(response?.data?.data);
         setContactList(response?.data?.data);
         setLoading(false);
       } catch (error) {
