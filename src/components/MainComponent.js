@@ -103,7 +103,7 @@ const MainComponent = () => {
           <Col xs={12} sm={6} md={4} lg={4} xl={4} style={{ fontSize: `${fontSize}px` }}>
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white',   borderRadius:"20px", fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
-                <h2>Total Journery per month</h2>
+                <h2>Total Journery per year</h2>
                 <p> 0</p>
               </Card.Body>
             </Card>
