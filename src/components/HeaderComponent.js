@@ -21,9 +21,8 @@ const HeaderComponent = ({ onToggleSidebar }) => {
 
   return (
     <Navbar style={headerStyle} expand="lg">
-     
       <Navbar.Brand>
-        <span style={{ color: "white", margin: "10px" }}>Dashboard</span>
+        <span style={{ color: "white", margin: "10px",paddingLeft:30 }}>Dashboard</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
     </Navbar>

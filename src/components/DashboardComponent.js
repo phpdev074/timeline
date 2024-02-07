@@ -20,7 +20,7 @@ const Dashboard = () => {
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        marginLeft: isSidebarVisible ? '200px' : '0',
+        marginLeft: isSidebarVisible ? '180px' : '0',
         transition: 'margin 0.3s ease',
         backgroundColor: 'red',
       }}>

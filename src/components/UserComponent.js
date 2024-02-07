@@ -150,15 +150,17 @@ const UserComponent = () => {
                   <td>{index + 1}</td>
                   <td>
                     <img
-                      src={user.image}
+                    
+                      src={user.image||"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU06Uvui0W3-h5P35NrF39tBMIsm6ZGQSbYA"}
                       alt="User"
                       style={{
-                        width:"100%",
-                        maxWidth:"35px",
+                        height:60,
+                        width:60,
                         borderRadius: "100%",
                         display: "block",
                         overflow:"hidden",
-                        objectFit:"cover",
+                        objectFit:'cover',
+                       
                       }}
                     />
                   </td>
