@@ -35,7 +35,7 @@ const MainComponent = () => {
           axios.get("http://ludhianahosierycentre.co.in:5005/api/journey/get-all-user-journey-details", { headers })
         ]);
         setUserInfo(response?.data);
-        setJourneyDetails(journeyDetailsResponse?.data); 
+        setJourneyDetails(journeyDetailsResponse?.data?.data?.allJourneys); 
       } catch (error) {
         console.log(error);
       }
@@ -76,7 +76,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white' ,  borderRadius:"20px",  fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
                 <h2>Total Journey</h2>
-                <p> {journeyDetails?.data?.length}</p>
+                <p> {journeyDetails?.length}</p>
               </Card.Body>
             </Card>
           </Col>
@@ -104,7 +104,7 @@ const MainComponent = () => {
             <Card className="mb-3" style={{ backgroundColor: '#170d36', color: 'white',   borderRadius:"20px", fontFamily: "'Playfair Display', serif"}}>
               <Card.Body>
                 <h2>Total Journery per year</h2>
-                <p> 0</p>
+                <p>{journeyDetails?.length}</p>
               </Card.Body>
             </Card>
           </Col>

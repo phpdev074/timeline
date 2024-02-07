@@ -3,6 +3,11 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
 const UserDetailsModal = ({ isOpen, onClose, user }) => {
+  const currentDate = new Date(user?.dateOfBirth);
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; 
+  const year = currentDate.getFullYear();
+  const formattedDate = `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year.toString().slice(-2)}`;
   return (
     <Modal show={isOpen} onHide={onClose}>
       <Modal.Header closeButton>
@@ -17,20 +22,22 @@ const UserDetailsModal = ({ isOpen, onClose, user }) => {
                   src={user.image}
                   alt="User"
                   style={{
-                    width: "30%", 
-                    height: "30%",
-                    borderRadius: "50%",
+                    height:100,
+                    width:100,
+                    borderRadius: "100%",
                     display: "block",
-                    margin: "auto", 
+                    overflow:"hidden",
+                    objectFit:'cover',
+                    margin:"auto" 
                   }}
                 />
               )}
             </div>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Status: {user.status}</p>
-            <p>Phone Number: {user.phoneNumber}</p>
-            <p>Subscription: {user?.subscription}</p>
+            <p>Name: {user?.name}</p>
+            <p>Email: {user?.email}</p>
+            <p>Phone Number: {user?.phoneNumber}</p>
+            <p>Gender: {user?.gender}</p>
+            <p>Date of Birth: {formattedDate}</p>
           </>
         )}
       </Modal.Body>

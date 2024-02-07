@@ -85,10 +85,10 @@ const SidebarComponent = ({ isSidebarVisible }) => {
           <Link to="/dashboard/user-data" style={textStyle}>Users</Link>
         </Nav.Item>
         <Nav.Item  style={navItemStyles}>
-          <Link to="/dashboard/report-list" style={textStyle}>Reports Users</Link>
+          <Link to="/dashboard/journey-list" style={textStyle}>Timeline capsule</Link>
         </Nav.Item>
         <Nav.Item  style={navItemStyles}>
-          <Link to="/dashboard/journey-list" style={textStyle}>Reports Journey</Link>
+          <Link to="/dashboard/report-list" style={textStyle}>Reports Users</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
           <Link to="/dashboard/contact-us" style={textStyle}>Contact Us</Link>
