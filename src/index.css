@@ -106,5 +106,6 @@ body {
   max-width: 400px; 
 }
 .report-header{
- margin-left: 20px;
+  margin-left: "20px";
+  font-family: "'Playfair Display', serif";
 }
