@@ -13,7 +13,7 @@ const Dashboard = () => {
     <div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <SidebarComponent isSidebarVisible={isSidebarVisible} />
-        <div style={{ marginTop: '80px', width: '90%', marginLeft: '13%' }}>
+        <div style={{ marginTop: '80px', width: '90%', paddingLeft:'16%' }}>
           <Outlet />
         </div>
       </div>

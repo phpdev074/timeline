@@ -9,6 +9,7 @@ import MainComponent from "./components/MainComponent";
 import ContactUsComponent from "./components/ContactusComponent";
 import PaymentHistoryComponent from "./components/PaymentHistoryComponent";
 import ReportComponent from "./components/ReportComponent";
+import ReportJourneyComponents from "./components/ReportJourneyComponent";
 
 const isAuthenticated = () => {
   return localStorage.getItem('jwtToken') !== null;
@@ -45,6 +46,7 @@ function App() {
             <Route path="contact-us" element = {<ContactUsComponent/>} />
             <Route path="payment-history" element = {<PaymentHistoryComponent/>}/>
             <Route path="report-list" element ={<ReportComponent/>} />
+            <Route path="journey-list" element ={<ReportJourneyComponents/>} />
            </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

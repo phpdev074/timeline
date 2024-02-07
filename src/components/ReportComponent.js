@@ -17,7 +17,6 @@ const ReportComponent = () => {
           "http://ludhianahosierycentre.co.in:5005/api/get-list-of-reports",
           { headers }
         );
-        console.log(response?.data?.data)
         setReportList(response?.data?.data?.emailCounts);
         setDetailsOfTheUser(response?.data?.data?.getReportUsersLists)
         setLoading(false);
@@ -64,7 +63,7 @@ const ReportComponent = () => {
             </thead>
             <tbody>
               {reportList.map((user, index) => (
-                <tr key={user?._id}>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{user.name.toUpperCase()}</td>
                   <td>{user.count}</td>

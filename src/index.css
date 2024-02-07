@@ -55,7 +55,7 @@ body {
 
 .custom-table {
   margin: auto;
-  width: 90% !important;
+  width: 100% !important;
   border-collapse: collapse;
   border-radius: 10px;
   overflow: hidden;
@@ -64,7 +64,7 @@ body {
 }
 .search-component{
   margin: auto;
-  width: 90% !important;
+  width: 100% !important;
   border-collapse: collapse;
   border-radius: 10px;
 }
@@ -72,7 +72,7 @@ body {
   margin: auto;
   margin-bottom: 1%;
   margin-top: 1%;
-  width: 90% !important;
+  width: 100% !important;
 }
 .sort-component button{
   margin-left:0.5%;
@@ -104,4 +104,7 @@ body {
 .custom-form-width {
   width: 300%;
   max-width: 400px; 
+}
+.report-header{
+ margin-left: 20px;
 }

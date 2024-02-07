@@ -8,7 +8,6 @@ const SidebarComponent = ({ isSidebarVisible }) => {
   const navigate = useNavigate();
 
   const sidebarStyle = {
-    position: 'relative',
     backgroundColor: '#170d36',
     color: 'white',
     overflow: 'hidden',
@@ -89,13 +88,7 @@ const SidebarComponent = ({ isSidebarVisible }) => {
           <Link to="/dashboard/report-list" style={textStyle}>Reports Users</Link>
         </Nav.Item>
         <Nav.Item  style={navItemStyles}>
-          <Link to="/dashboard/report-list" style={textStyle}>Reports Journey</Link>
-        </Nav.Item>
-        <Nav.Item  style={navItemStyles}>
-          <Link to="/dashboard/report-list" style={textStyle}>Reports Timelines</Link>
-        </Nav.Item>
-        <Nav.Item  style={navItemStyles}>
-          <Link to="/dashboard/report-list" style={textStyle}>Timelines listing</Link>
+          <Link to="/dashboard/journey-list" style={textStyle}>Reports Journey</Link>
         </Nav.Item>
         <Nav.Item style={navItemStyles}>
           <Link to="/dashboard/contact-us" style={textStyle}>Contact Us</Link>
